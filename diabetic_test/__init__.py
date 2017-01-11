@@ -1,4 +1,6 @@
 from brain import Brain
+from conf import *
+
 class DiabeticTest():
     def __init__(self):
         self.brain = Brain()
@@ -25,3 +27,31 @@ class DiabeticTest():
         attributes.append(input("Diabeties predigree function : "))
         attributes.append(input("Age : "))
         self.brain.classify(attributes)
+
+    def classify(self):
+        total = 0
+        right = 0
+        wrong = 0
+
+        for row in read_csv():
+            total += 1
+            attributes = list(map(float, row[:8]))
+
+            if (row[8] == "1"):
+                result = self.brain.classify(attributes)
+                if result == 1:
+                    right += 1
+                else:
+                    wrong += 1
+                print "ACTUAL: Diabetic"
+            else:
+                result = self.brain.classify(attributes)
+                if result == 0:
+                    right += 1
+                else:
+                    wrong += 1
+                print "ACTUAL: Not Diabetic"
+
+        print "total: %4d" % total, \
+              "right: %4d" % right, \
+              "wrong: %4d" % wrong
